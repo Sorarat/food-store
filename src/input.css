@@ -1,1 +1,10 @@
-@import "tailwindcss";
+@import "tailwindcss/preflight"; /* Tailwind reset styles */
+@import "tailwindcss/utilities"; /* Tailwind utility classes */
+
+@tailwind base; /* Add this line to include Tailwind's base styles */
+
+@layer base {
+  body {
+    background-color: theme("colors.backgroundColor");
+  }
+}
