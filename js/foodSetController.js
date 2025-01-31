@@ -1,3 +1,4 @@
+import { setupAddToCartListeners } from "./cartController.js";
 import { getFoodSetItems } from "./foodSetModel.js";
 import { renderFoodSet } from "./foodSetView.js";
 
@@ -5,6 +6,7 @@ import { renderFoodSet } from "./foodSetView.js";
 function initialize() {
   const menuItems = getFoodSetItems();
   renderFoodSet(menuItems);
+  setupAddToCartListeners();
 }
 
 export { initialize };

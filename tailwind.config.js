@@ -5,7 +5,7 @@ module.exports = {
     "./index.html",
     "./cart.html",
     "./js/**/*.js",
-  ], // Add your HTML files here
+  ],
   theme: {
     extend: {
       colors: {
