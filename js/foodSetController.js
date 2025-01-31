@@ -1,10 +1,10 @@
-import { getMenuItems } from "./foodSetModel.js";
-import { renderMenu } from "./foodSetView.js";
+import { getFoodSetItems } from "./foodSetModel.js";
+import { renderFoodSet } from "./foodSetView.js";
 
 // Function to initialize the page
 function initialize() {
-  const menuItems = getMenuItems(); // Get the food items
-  renderMenu(menuItems); // Render the menu items
+  const menuItems = getFoodSetItems();
+  renderFoodSet(menuItems);
 }
 
 export { initialize };

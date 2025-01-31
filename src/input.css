@@ -1,7 +1,7 @@
-@import "tailwindcss/preflight"; /* Tailwind reset styles */
-@import "tailwindcss/utilities"; /* Tailwind utility classes */
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
 
-@tailwind base; /* Add this line to include Tailwind's base styles */
+@tailwind base;
 
 @layer base {
   body {
