@@ -14,44 +14,53 @@
     <nav class="p-5 shadow-sm flex items-center justify-between">
       <img src="assets/logo.png" alt="logo" class="w-[150px] h-[50px]" />
 
-      <div class="flex space-x-24 ml-auto mr-32">
-        <a href="#" class="text-gray-800 hover:text-gray-900 font-normal"
-          >Home</a
-        >
-        <a href="#" class="text-gray-800 hover:text-gray-900 font-normal"
-          >Shop</a
-        >
-      </div>
+      <button id="menu-toggle" class="md:hidden text-gray-800 text-2xl">
+        <i class="fas fa-bars"></i>
+      </button>
 
-      <div class="relative mr-14">
-        <a href="cart.html">
-          <i
-            class="fas fa-shopping-cart text-gray-700 text-2xl hover:text-gray-900 cursor-pointer"
-          ></i>
-        </a>
+      <div
+        id="menu"
+        class="hidden md:flex flex-col md:flex-row md:items-center md:space-x-24 absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-white md:bg-transparent shadow-md md:shadow-none p-5 md:p-0"
+      >
+        <a href="#" class="text-gray-800 font-normal">Home</a>
+        <a href="#food-section" class="text-gray-800 font-normal">Shop</a>
+
+        <div class="relative mr-14">
+          <a href="cart.html">
+            <i
+              class="fas fa-shopping-cart text-gray-700 text-2xl hover:text-gray-900 cursor-pointer"
+            ></i>
+          </a>
+        </div>
       </div>
     </nav>
 
-    <!-- hero section-->
-    <div class="bg-[url('/assets/backgroundImage.png')] bg-right bg-no-repeat">
-      <!-- <div class="bg-[url('/assets/food.jpg')] bg-cover bg-center bg-fixed" > -->
-
-      <div class="flex flex-col p-28 mt-4">
+    <!-- Hero Section -->
+    <div
+      class="bg-[url('/assets/food_flip.png')] sm:bg-[url('/assets/food.jpg')] bg-right bg-no-repeat bg-cover min-h-screen"
+    >
+      <div
+        class="flex flex-col items-center text-centersm:text-left sm:items-start px-6 sm:px-12 md:px-20 lg:px-28 py-16 sm:py-20"
+      >
         <div>
-          <h2 class="text-5xl font-semibold leading-normal">
-            Delicious Food Sets At <br />Affordable Prices
+          <h2
+            class="text-3xl mt-12 sm:text-4xl md:text-5xl font-semibold leading-snug sm:leading-normal"
+          >
+            Delicious Food Sets At <br class="hidden sm:inline" />
+            Affordable Prices
           </h2>
         </div>
 
-        <div class="mt-5">
-          <p class="font-light tracking-wider">
+        <div class="mt-4 sm:mt-5">
+          <p class="font-light tracking-wider text-sm sm:text-base md:text-lg">
             Order now & get exclusive discounts
           </p>
         </div>
 
-        <div class="mt-16">
+        <div class="mt-8 sm:mt-16">
           <button
-            class="bg-customGreen text-gray-50 px-8 py-3 rounded-md hover:bg-customDarkGreen transition duration-300 ease-in-out"
+            class="bg-customGreen text-gray-50 px-6 sm:px-8 py-3 rounded-md hover:bg-customDarkGreen hover:text-white hover:scale-105 transition duration-300 ease-in-out"
+            onclick="document.getElementById('food-section').scrollIntoView({behavior: 'smooth'})"
           >
             Browse Shop
           </button>
@@ -59,7 +68,7 @@
       </div>
     </div>
 
-    <div class="flex justify-center mt-28 mb-40">
+    <div class="flex justify-center mt-28 mb-40" id="food-section">
       <div
         id="food-items-container"
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-40 gap-y-10 place-items-center"
@@ -69,6 +78,12 @@
     <script type="module">
       import { initialize } from "./js/foodSetController.js";
       initialize();
+
+      document
+        .getElementById("menu-toggle")
+        .addEventListener("click", function () {
+          document.getElementById("menu").classList.toggle("hidden");
+        });
 
       window.onload = () => {
         localStorage.removeItem("cart");
