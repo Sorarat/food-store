@@ -21,7 +21,11 @@ function renderFoodSet(menuItems) {
           }</p>
 
           <div class="absolute bottom-0 right-0 w-32">
-            <button class="w-full py-2 text-customGreen bg-gray-100 hover:bg-gray-200 transition duration-300 ease-in-out">
+            <button class="w-full py-2 text-customGreen bg-gray-100 hover:bg-gray-200 transition duration-300 ease-in-out add-to-cart" 
+            data-item='${JSON.stringify({
+              name: item.name,
+              price: item.price,
+            })}'>
             Add to cart
             </button>
           </div>
