@@ -1,4 +1,8 @@
-import { calculateTotalPrice, clearLocalStorage } from "./cartController.js";
+import {
+  calculateTotalPrice,
+  fetchCartItems,
+  clearCartItems,
+} from "./cartController.js";
 
 function createTableHeader() {
   return `
@@ -85,7 +89,7 @@ function createCheckoutModal() {
   </div>`;
 }
 export function displayCartItems() {
-  const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+  const cartItems = fetchCartItems();
   const container = document.getElementById("cart-items-container");
   container.innerHTML = ""; // Clear the container before rendering new items
 
@@ -144,7 +148,7 @@ export function displayCartItems() {
   // Add event listener to show modal when "Checkout" button is clicked
   document.getElementById("checkoutButton").addEventListener("click", () => {
     document.getElementById("checkoutModal").classList.remove("hidden");
-    clearLocalStorage();
+    clearCartItems();
   });
 
   // Add event listener to close modal when "Close" button is clicked

@@ -1,5 +1,15 @@
+import { getCartItems, saveCartItems, clearCart } from "./cartModel.js";
+
+export function fetchCartItems() {
+  return getCartItems();
+}
+
+export function clearCartItems() {
+  clearCart();
+}
+
 export function addItemToCart(item) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = getCartItems();
 
   // check if the item is already in the cart
   const existingItemIndex = cart.findIndex(
@@ -14,12 +24,7 @@ export function addItemToCart(item) {
   }
 
   // save the updated cart item to localStorage
-  localStorage.setItem("cart", JSON.stringify(cart));
-}
-
-export function getCartItems() {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  return cart;
+  saveCartItems(cart);
 }
 
 export function calculateTotalPrice(cartItems, hasMembership = false) {
@@ -29,6 +34,7 @@ export function calculateTotalPrice(cartItems, hasMembership = false) {
   const discountItems = ["Orange Set", "Pink Set", "Green Set"];
 
   for (const item of cartItems) {
+    ``;
     total += item.price * item.quantity;
 
     // check if the item qualifies for a discount
@@ -53,8 +59,4 @@ export function calculateTotalPrice(cartItems, hasMembership = false) {
   }
 
   return { grandTotal: total.toFixed(2), discountMessage };
-}
-
-export function clearLocalStorage() {
-  localStorage.removeItem("cart");
 }
