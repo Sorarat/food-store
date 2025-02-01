@@ -2,11 +2,11 @@ import { calculateTotalPrice } from "./cartController.js";
 
 function createTableHeader() {
   return `
-    <div class="flex p-4 bg-gray-50 gap-x-6 mb-5">
-      <div class="w-2/5 text-lg font-semibold text-gray-900">Item</div>
-      <div class="w-1/5 text-lg font-semibold text-gray-900">Price</div>
-      <div class="w-1/5 text-lg font-semibold text-gray-900">Quantity</div>
-      <div class="w-1/5 text-lg font-semibold text-gray-900">Total</div>
+    <div class="flex p-4 bg-white gap-x-6 mb-5">
+      <div class="w-2/5 text-md md:text-lg font-semibold text-gray-900">Item</div>
+      <div class="w-1/5 text-md md:text-lg font-semibold text-gray-900">Price</div>
+      <div class="w-1/5 text-md md:text-lg font-semibold text-gray-900">Quantity</div>
+      <div class="w-1/5 text-md md:text-lg font-semibold text-gray-900">Total</div>
     </div> `;
 }
 
@@ -14,11 +14,11 @@ function createCartHTML(item) {
   const itemTotal = item.price * item.quantity;
 
   return `
-      <div class="flex p-4 bg-gray-50 gap-x-6 mb-4">
-        <div class="w-2/5 text-gray-900 dark:text-white">${item.name}</div>
-        <div class="w-1/5 text-gray-900 dark:text-white">฿${item.price}</div>
-        <div class="w-1/5 text-gray-900 dark:text-white">x${item.quantity}</div>
-        <div class="w-1/5 font-bold text-gray-900 dark:text-white">
+      <div class="flex p-4 bg-white gap-x-6 mb-4">
+        <div class="w-2/5 text-gray-900 ">${item.name}</div>
+        <div class="w-1/5 text-gray-900">฿${item.price}</div>
+        <div class="w-1/5 text-gray-900">x${item.quantity}</div>
+        <div class="w-1/5 font-bold text-gray-900">
           ฿${itemTotal}
         </div>
       </div>
@@ -27,7 +27,7 @@ function createCartHTML(item) {
 
 function createDiscountRow(discountMessage) {
   return `
-  <div class="flex p-4 bg-gray-50 mb-3 ">
+  <div class="flex p-4 bg-white mb-3 ">
     <div class="w-full text-center font-bold text-gray-700">
       ${discountMessage}
     </div>
@@ -36,7 +36,7 @@ function createDiscountRow(discountMessage) {
 
 function createTotalPriceRow(grandTotal) {
   return `
-  <div class="flex p-4 bg-gray-50">
+  <div class="flex p-4 bg-white">
     <div class="w-2/5"></div>
     <div class="w-1/5"></div>
     <div class="w-1/5 font-bold text-gray-700">Total</div>
@@ -145,12 +145,5 @@ export function displayCartItems() {
   // Add event listener to close modal when "Close" button is clicked
   document.getElementById("closeModalButton").addEventListener("click", () => {
     document.getElementById("checkoutModal").classList.add("hidden");
-  });
-
-  // Optionally, you can close the modal if clicked outside of the modal content
-  document.getElementById("checkoutModal").addEventListener("click", (e) => {
-    if (e.target === document.getElementById("checkoutModal")) {
-      document.getElementById("checkoutModal").classList.add("hidden");
-    }
   });
 }
