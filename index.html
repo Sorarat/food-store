@@ -75,6 +75,7 @@
       </div>
     </div>
 
+    <!-- Shop Section -->
     <div class="flex justify-center mt-28 mb-40" id="food-section">
       <div
         id="food-items-container"
@@ -83,8 +84,8 @@
     </div>
 
     <script type="module">
-      import { initialize } from "./js/foodSetController.js";
-      initialize();
+      import { initializeFoodSets } from "./js/foodSetController.js";
+      initializeFoodSets();
 
       document
         .getElementById("hamburger-menu-toggle")
@@ -93,10 +94,6 @@
           navbar.classList.toggle("hidden");
           navbar.classList.toggle("flex");
         });
-
-      window.onload = () => {
-        localStorage.removeItem("cart");
-      };
     </script>
   </body>
 </html>

@@ -8,7 +8,7 @@ const foodSetItems = [
   { name: "Orange Set", price: 120, pic: "assets/orangeFood.jpg" },
 ];
 
-// Function to get all menu items
+// Function to get all food set items
 export function getFoodSetItems() {
   return foodSetItems;
 }

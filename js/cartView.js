@@ -1,4 +1,4 @@
-import { calculateTotalPrice } from "./cartController.js";
+import { calculateTotalPrice, clearLocalStorage } from "./cartController.js";
 
 function createTableHeader() {
   return `
@@ -62,7 +62,7 @@ function createMemberDiscountRadioButton() {
 function createCheckoutButton() {
   return ` 
   <div class="flex justify-center p-4 mt-4">
-    <button id="checkoutButton" class="bg-customGreen text-white font-medium px-10 py-2 rounded-md hover:bg-customDarkGreen transition ease-in-out duration-300">
+    <button id="checkoutButton" class="bg-customGreen text-white font-medium px-10 py-2 rounded-md hover:bg-customDarkGreen transition ease-in-out duration-300" disabled>
       Checkout
     </button>
   </div> `;
@@ -124,15 +124,19 @@ export function displayCartItems() {
       : "";
   };
 
+  // add checkout button
+  container.innerHTML += createCheckoutButton();
+
   // Add event listeners to the radio buttons
   setTimeout(() => {
     document.querySelectorAll('input[name="membership"]').forEach((radio) => {
-      radio.addEventListener("change", updateTotalPrice);
+      radio.addEventListener("change", () => {
+        // Enable the checkout button when either option is selected
+        document.getElementById("checkoutButton").disabled = false;
+        updateTotalPrice();
+      });
     });
   }, 0);
-
-  // add checkout button
-  container.innerHTML += createCheckoutButton();
 
   // create the modal
   container.innerHTML += createCheckoutModal();
@@ -140,6 +144,7 @@ export function displayCartItems() {
   // Add event listener to show modal when "Checkout" button is clicked
   document.getElementById("checkoutButton").addEventListener("click", () => {
     document.getElementById("checkoutModal").classList.remove("hidden");
+    clearLocalStorage();
   });
 
   // Add event listener to close modal when "Close" button is clicked

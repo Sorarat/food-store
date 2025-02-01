@@ -1,4 +1,6 @@
-function renderFoodSet(menuItems) {
+import { addItemToCart } from "./cartController.js";
+
+export function renderFoodSet(menuItems) {
   const container = document.getElementById("food-items-container");
   container.innerHTML = ""; // Clear any previous items
 
@@ -34,6 +36,17 @@ function renderFoodSet(menuItems) {
     `;
     container.innerHTML += foodItemHTML;
   });
+
+  setupAddToCartListeners();
 }
 
-export { renderFoodSet };
+function setupAddToCartListeners() {
+  const buttons = document.querySelectorAll(".add-to-cart");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const item = JSON.parse(event.target.getAttribute("data-item"));
+      addItemToCart(item);
+    });
+  });
+}
