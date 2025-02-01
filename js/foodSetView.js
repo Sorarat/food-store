@@ -46,7 +46,12 @@ function setupAddToCartListeners() {
   buttons.forEach((button) => {
     button.addEventListener("click", (event) => {
       const item = JSON.parse(event.target.getAttribute("data-item"));
+
       addItemToCart(item);
+
+      window.alert("An item has been added to the cart.");
     });
   });
 }
+
+function showItemAddedAlert() {}

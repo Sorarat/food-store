@@ -66,7 +66,7 @@ function createMemberDiscountRadioButton() {
 function createCheckoutButton() {
   return ` 
   <div class="flex justify-center p-4 mt-4">
-    <button id="checkoutButton" class="bg-customGreen text-white font-medium px-10 py-2 rounded-md hover:bg-customDarkGreen transition ease-in-out duration-300" disabled>
+    <button id="checkoutButton" class="bg-customGreen text-white font-medium px-10 py-2 rounded-md transition ease-in-out duration-300" disabled>
       Checkout
     </button>
   </div> `;
@@ -138,6 +138,9 @@ export function displayCartItems() {
         // Enable the checkout button when either option is selected
         document.getElementById("checkoutButton").disabled = false;
         updateTotalPrice();
+        document
+          .getElementById("checkoutButton")
+          .add("hover:bg-customDarkGreen");
       });
     });
   }, 0);
