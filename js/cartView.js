@@ -44,15 +44,46 @@ function createTotalPriceRow(grandTotal) {
   </div> `;
 }
 
+function createMemberDiscountRadioButton() {
+  return `
+    <div class="flex items-center gap-4 p-4">
+      <p class="text-lg text-gray-700 mr-4">Do you have a membership card?</p>
+      <div>
+        <input type="radio" id="member-yes" name="membership" value="yes" class="w-5 h-5" />
+        <label for="member-yes" class="text-gray-700 text-lg">Yes</label>
+        
+        <input type="radio" id="member-no" name="membership" value="no" class="w-5 h-5 ml-5" />
+        <label for="member-no" class="text-gray-700 text-lg">No</label>
+      </div>
+    </div>
+  `;
+}
+
 function createCheckoutButton() {
   return ` 
   <div class="flex justify-center p-4 mt-4">
-    <button class="bg-customGreen text-white font-medium px-10 py-2 rounded-md hover:bg-customDarkGreen transition ease-in-out duration-300">
+    <button id="checkoutButton" class="bg-customGreen text-white font-medium px-10 py-2 rounded-md hover:bg-customDarkGreen transition ease-in-out duration-300">
       Checkout
     </button>
   </div> `;
 }
 
+function createCheckoutModal() {
+  return `
+  <div id="checkoutModal" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center hidden">
+    <div class="bg-white p-10 rounded-md shadow-2xl max-w-md w-full mx-4 modal-entrance">
+      <div class="text-center">
+        <h2 class="text-3xl font-bold text-green-600 mb-4">🎉 Purchase Successful!</h2>
+        <p class="text-gray-600">Your items have been successfully purchased. Thank you for shopping with us!</p>
+      </div>
+      <div class="mt-6 flex justify-center">
+        <button id="closeModalButton" class="px-6 py-2 bg-customGreen hover:bg-customDarkGreen text-white rounded-lg transition duration-300">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>`;
+}
 export function displayCartItems() {
   const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
   const container = document.getElementById("cart-items-container");
@@ -63,23 +94,63 @@ export function displayCartItems() {
     return;
   }
 
-  // add header row
+  // Add header row
   container.innerHTML = createTableHeader();
 
-  // add cart items
+  // Add cart items
   cartItems.forEach((item) => {
     container.innerHTML += createCartHTML(item);
   });
 
-  // calculate total price and discount
-  const { grandTotal, discountMessage } = calculateTotalPrice(cartItems);
+  // add membership radio buttons
+  container.innerHTML += createMemberDiscountRadioButton();
 
-  if (discountMessage) {
-    container.innerHTML += createDiscountRow(discountMessage);
-  }
+  // Add placeholders for discount message and total price
+  container.innerHTML += `<div id="discount-message"></div>`;
+  container.innerHTML += `<div id="total-price-row"></div>`;
 
-  // add total price row
-  container.innerHTML += createTotalPriceRow(grandTotal);
+  // Function to update the price based on membership selection
+  const updateTotalPrice = () => {
+    const hasMembership = document.getElementById("member-yes").checked;
+    const { grandTotal, discountMessage } = calculateTotalPrice(
+      cartItems,
+      hasMembership
+    );
 
+    document.getElementById("total-price-row").innerHTML =
+      createTotalPriceRow(grandTotal);
+    document.getElementById("discount-message").innerHTML = discountMessage
+      ? createDiscountRow(discountMessage)
+      : "";
+  };
+
+  // Add event listeners to the radio buttons
+  setTimeout(() => {
+    document.querySelectorAll('input[name="membership"]').forEach((radio) => {
+      radio.addEventListener("change", updateTotalPrice);
+    });
+  }, 0);
+
+  // add checkout button
   container.innerHTML += createCheckoutButton();
+
+  // create the modal
+  container.innerHTML += createCheckoutModal();
+
+  // Add event listener to show modal when "Checkout" button is clicked
+  document.getElementById("checkoutButton").addEventListener("click", () => {
+    document.getElementById("checkoutModal").classList.remove("hidden");
+  });
+
+  // Add event listener to close modal when "Close" button is clicked
+  document.getElementById("closeModalButton").addEventListener("click", () => {
+    document.getElementById("checkoutModal").classList.add("hidden");
+  });
+
+  // Optionally, you can close the modal if clicked outside of the modal content
+  document.getElementById("checkoutModal").addEventListener("click", (e) => {
+    if (e.target === document.getElementById("checkoutModal")) {
+      document.getElementById("checkoutModal").classList.add("hidden");
+    }
+  });
 }
