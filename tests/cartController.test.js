@@ -98,7 +98,7 @@ describe("Testing Cart Controller functions", () => {
     const result = calculateTotalPrice(mockCart);
     expect(result.grandTotal).toBe("308.00");
     expect(result.discountMessage).toBe(
-      "You received a ฿12.00 discount! (5% off on eligible items)"
+      "You received a ฿12.00 discount! (5% off on eligible items)."
     );
   });
 
@@ -125,7 +125,7 @@ describe("Testing Cart Controller functions", () => {
     const result = calculateTotalPrice(mockCart, true);
     expect(result.grandTotal).toBe("500.40");
     expect(result.discountMessage).toBe(
-      "You received a ฿24.00 discount! (5% off on eligible items) As a member, you got an additional ฿55.60 off! (10% off for members)"
+      "You received a ฿24.00 discount! (5% off on eligible items). As a member, you got an additional ฿55.60 off! (10% off for members)"
     );
   });
 
