@@ -53,5 +53,3 @@ function setupAddToCartListeners() {
     });
   });
 }
-
-function showItemAddedAlert() {}
