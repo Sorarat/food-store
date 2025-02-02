@@ -41,23 +41,23 @@ function createDiscountRow(discountMessage) {
 function createTotalPriceRow(grandTotal) {
   return `
   <div class="flex p-4 bg-white">
-    <div class="w-2/5"></div>
-    <div class="w-1/5"></div>
-    <div class="w-1/5 font-bold text-gray-700">Total</div>
-    <div class="w-1/5 font-bold text-gray-700">฿${grandTotal}</div>
+    <div class="w-full md:w-2/5"></div>
+    <div class="w-full md:w-1/5"></div>
+    <div class="w-full md:w-1/5 font-bold text-gray-700">Total</div>
+    <div class="w-full md:w-1/5 font-bold text-gray-700">฿${grandTotal}</div>
   </div> `;
 }
 
 function createMemberDiscountRadioButton() {
   return `
-    <div class="flex items-center gap-4 p-4">
-      <p class="text-lg text-gray-700 mr-4">Do you have a membership card?</p>
-      <div>
+    <div class="flex flex-col md:flex-row items-center gap-4 p-4">
+      <p class="text-md text-gray-700 mr-4 md:text-lg">Do you have a membership card?</p>
+      <div class="flex gap-x-4">
         <input type="radio" id="member-yes" name="membership" value="yes" class="w-5 h-5" />
-        <label for="member-yes" class="text-gray-700 text-lg">Yes</label>
-        
-        <input type="radio" id="member-no" name="membership" value="no" class="w-5 h-5 ml-5" />
-        <label for="member-no" class="text-gray-700 text-lg">No</label>
+        <label for="member-yes" class="text-gray-700 text-md md:text-lg">Yes</label>
+
+        <input type="radio" id="member-no" name="membership" value="no" class="w-5 h-5 " />
+        <label for="member-no" class="text-gray-700 text-md md:text-lg">No</label>
       </div>
     </div>
   `;

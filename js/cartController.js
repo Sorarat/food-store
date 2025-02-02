@@ -49,7 +49,7 @@ export function calculateTotalPrice(cartItems, hasMembership = false) {
     total -= discountAmount;
     discountMessage = `You received a ฿${discountAmount.toFixed(
       2
-    )} discount! (5% off on eligible items)`;
+    )} discount! (5% off on eligible items).`;
   }
 
   // apply 10% membership discount
