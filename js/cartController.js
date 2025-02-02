@@ -32,30 +32,33 @@ export function calculateTotalPrice(cartItems, hasMembership = false) {
   let discountAmount = 0;
   let discountMessage = "";
   const discountItems = ["Orange Set", "Pink Set", "Green Set"];
+  let discountSubtotal = 0;
 
   for (const item of cartItems) {
-    ``;
     total += item.price * item.quantity;
 
     // check if the item qualifies for a discount
     if (discountItems.includes(item.name) && item.quantity >= 2) {
-      discountAmount = total * 0.05;
+      discountSubtotal += item.price * item.quantity;
     }
   }
 
   // apply 5% discount if eligible
-  if (discountAmount > 0) {
+  if (discountSubtotal > 0) {
+    discountAmount = discountSubtotal * 0.05;
     total -= discountAmount;
-    discountMessage = `You received a ฿${discountAmount.toFixed(2)} discount!`;
+    discountMessage = `You received a ฿${discountAmount.toFixed(
+      2
+    )} discount! (5% off on eligible items)`;
   }
 
   // apply 10% membership discount
   if (hasMembership) {
     const memberDiscount = total * 0.1;
     total -= memberDiscount;
-    discountMessage += ` And as a member, you got an additional ฿${memberDiscount.toFixed(
+    discountMessage += ` As a member, you got an additional ฿${memberDiscount.toFixed(
       2
-    )} off!`;
+    )} off! (10% off for members)`;
   }
 
   return { grandTotal: total.toFixed(2), discountMessage };
