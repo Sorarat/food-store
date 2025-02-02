@@ -1,7 +1,7 @@
 # Food Store Web Application
 
 ## Description
-This web app is built as part of the assignment for the Full-Stack Engineer position. It demonstrates my ability to plan, design, and implement a web-based solution.
+This web application is an online food store where users can browse food sets, add them to their cart, and view the total price, including discounts. It is fully responsive, ensuring a smooth experience across all device sizes.
 
 ## Features
 
